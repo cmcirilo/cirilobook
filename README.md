@@ -1,6 +1,6 @@
 # CiriloBook
 
-Developed in Angular 10
+Developed in Angular 11
 
 ## Getting Started
 
@@ -15,4 +15,3 @@ git clone https://github.com/cmcirilo/cirilobook.git
 cmcirilo@gmail.com
 
 ## License
-
