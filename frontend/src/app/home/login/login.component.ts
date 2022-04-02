@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       .authenticate(this.username, this.password)
       .subscribe(
         () => {
-          this.router.navigate(["animals"]);
+          this.router.navigate(["products"]);
         },
         (error) => {
           alert("User or password invalid");
