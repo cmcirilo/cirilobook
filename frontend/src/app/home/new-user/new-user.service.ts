@@ -15,4 +15,10 @@ export class NewUserService {
             newUser,
         );
     }
+
+    verifyExistingUser(userName: string) {
+        return this.httpClient.get(
+            `http://localhost:3000/user/exists/${userName}`,
+        );
+    }
 }
