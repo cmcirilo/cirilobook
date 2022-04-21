@@ -1,33 +1,61 @@
 <h4 class="text-center">Sign Up and show your product to World !</h4>
 
 <form class="form mt-4" [formGroup]="newUserForm" (submit)="create()">
-  <div class="form-group">
-    <input placeholder="E-mail" class="form-control" formControlName="email" />
-  </div>
-  <div class="form-group">
-    <input
-      placeholder="Full Name"
-      class="form-control"
-      formControlName="fullName"
-    />
-  </div>
-  <div class="form-group">
-    <input
-      placeholder="User Name"
-      class="form-control"
-      formControlName="userName"
-    />
-  </div>
-  <div class="form-group">
-    <input
-      type="password"
-      placeholder="Password"
-      class="form-control"
-      formControlName="password"
-    />
-  </div>
+    <div class="form-group">
+        <input
+            placeholder="E-mail"
+            class="form-control"
+            formControlName="email"
+        />
+        <app-message
+            *ngIf="
+                newUserForm.get('email')?.errors?.required &&
+                newUserForm.get('email')?.touched
+            "
+            message="E-mail required"
+        >
+        </app-message>
+        <app-message
+            *ngIf="
+                newUserForm.get('email')?.errors?.email &&
+                newUserForm.get('email')?.touched
+            "
+            message="E-mail invalid format"
+        >
+        </app-message>
+    </div>
+    <div class="form-group">
+        <input
+            placeholder="Full Name"
+            class="form-control"
+            formControlName="fullName"
+        />
+        <app-message
+            *ngIf="
+                newUserForm.get('fullName')?.errors &&
+                newUserForm.get('fullName')?.touched
+            "
+            message="Name invalid"
+        >
+        </app-message>
+    </div>
+    <div class="form-group">
+        <input
+            placeholder="User Name"
+            class="form-control"
+            formControlName="userName"
+        />
+    </div>
+    <div class="form-group">
+        <input
+            type="password"
+            placeholder="Password"
+            class="form-control"
+            formControlName="password"
+        />
+    </div>
 
-  <button class="btn btn-primary btn-block">Sign Up</button>
+    <button class="btn btn-primary btn-block">Sign Up</button>
 </form>
 
 <p>Already User ? <a [routerLink]="['']">Log In</a></p>
