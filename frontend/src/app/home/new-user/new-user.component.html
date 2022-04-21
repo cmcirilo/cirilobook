@@ -54,7 +54,10 @@
         >
         </app-message>
         <app-message
-            *ngIf="newUserForm.get('userName')?.errors?.alreadyUser"
+            *ngIf="
+                newUserForm.get('userName')?.errors?.alreadyUser &&
+                newUserForm.get('userName')?.touched
+            "
             message="User already exists"
         >
         </app-message>
@@ -67,6 +70,11 @@
             formControlName="password"
         />
     </div>
+    <app-message
+        *ngIf="newUserForm.errors?.sameUserNameAndPassword"
+        message="Password must be diferent from user name"
+    >
+    </app-message>
 
     <button class="btn btn-primary btn-block">Sign Up</button>
 </form>
