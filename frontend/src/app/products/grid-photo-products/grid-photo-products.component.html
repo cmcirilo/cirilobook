@@ -1,0 +1,21 @@
+<p class="text-center text-muted" *ngIf="!products.length">
+  Sorry there're not products
+</p>
+
+<div class="row">
+  <div *ngFor="let product of products" class="col-4">
+    <a [routerLink]="['/products', product.id]"></a>
+    <app-card>
+      <app-product
+        [url]="product.url"
+        [description]="product.description"
+      ></app-product>
+      <i aria-hidden="true" class="fa fa-heart-o fa-1x mr-2">{{
+        product.likes
+      }}</i>
+      <i aria-hidden="true" class="fa fa-comment-o fa-1x mr-2 ml-2">{{
+        product.comments
+      }}</i>
+    </app-card>
+  </div>
+</div>
