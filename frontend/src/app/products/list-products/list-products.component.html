@@ -1,1 +1,3 @@
-<app-grid-photo-products [products]="products"></app-grid-photo-products>
+<div *ngIf="products$ | async as products">
+  <app-grid-photo-products [products]="products"></app-grid-photo-products>
+</div>
