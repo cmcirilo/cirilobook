@@ -12,8 +12,16 @@ CREATE TABLE IF NOT EXISTS user (
 )
 `;
 
-const INSERT_DEFAULT_USER_1 =
-    `
+const INSERT_DEFAULT_USER_1 = `
+INSERT INTO user (
+    user_name, 
+    user_email,
+    user_password,
+    user_full_name
+) SELECT 'alvaro', 'alvaro@cirilobook.com.br', '12345678', 'Alvaro' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'alvaro')
+`;
+
+const INSERT_DEFAULT_USER_2 = `
 INSERT INTO user (
     user_name, 
     user_email,
@@ -22,8 +30,7 @@ INSERT INTO user (
 ) SELECT 'cirilo', 'cirilo@cirilobook.com.br', '12345678', 'Cirilo' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'cirilo')
 `;
 
-const PHOTO_SCHEMA =
-    `
+const PHOTO_SCHEMA = `
 CREATE TABLE IF NOT EXISTS photo (
     photo_id INTEGER PRIMARY KEY AUTOINCREMENT,
     photo_post_date TIMESTAMP NOT NULL, 
@@ -36,8 +43,7 @@ CREATE TABLE IF NOT EXISTS photo (
 )
 `;
 
-const COMMENT_SCHEMA =
-    `
+const COMMENT_SCHEMA = `
 CREATE TABLE IF NOT EXISTS comment (
     comment_id INTEGER   PRIMARY KEY AUTOINCREMENT,
     comment_date TIMESTAMP NOT NULL,
@@ -62,24 +68,25 @@ CREATE TABLE IF NOT EXISTS like (
 `;
 
 db.serialize(() => {
-    db.run("PRAGMA foreign_keys=ON");
-    db.run(USER_SCHEMA);
-    db.run(INSERT_DEFAULT_USER_1);
-    db.run(PHOTO_SCHEMA);
-    db.run(COMMENT_SCHEMA);
-    db.run(LIKE_SCHEMA);
+	db.run('PRAGMA foreign_keys=ON');
+	db.run(USER_SCHEMA);
+	db.run(INSERT_DEFAULT_USER_1);
+	db.run(INSERT_DEFAULT_USER_2);
+	db.run(PHOTO_SCHEMA);
+	db.run(COMMENT_SCHEMA);
+	db.run(LIKE_SCHEMA);
 
-    db.each("SELECT * FROM user", (err, user) => {
-        console.log('Users');
-        console.log(user);
-    });
+	db.each('SELECT * FROM user', (err, user) => {
+		console.log('Users');
+		console.log(user);
+	});
 });
 
 process.on('SIGINT', () =>
-    db.close(() => {
-        console.log('Database closed');
-        process.exit(0);
-    })
+	db.close(() => {
+		console.log('Database closed');
+		process.exit(0);
+	}),
 );
 
 module.exports = db;
