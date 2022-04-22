@@ -18,15 +18,6 @@ INSERT INTO user (
     user_email,
     user_password,
     user_full_name
-) SELECT 'alvaro', 'alvaro@cirilobook.com.br', '12345678', 'Alvaro' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'alvaro')
-`;
-
-const INSERT_DEFAULT_USER_2 = `
-INSERT INTO user (
-    user_name, 
-    user_email,
-    user_password,
-    user_full_name
 ) SELECT 'cirilo', 'cirilo@cirilobook.com.br', '12345678', 'Cirilo' WHERE NOT EXISTS (SELECT * FROM user WHERE user_name = 'cirilo')
 `;
 
@@ -71,7 +62,6 @@ db.serialize(() => {
 	db.run('PRAGMA foreign_keys=ON');
 	db.run(USER_SCHEMA);
 	db.run(INSERT_DEFAULT_USER_1);
-	db.run(INSERT_DEFAULT_USER_2);
 	db.run(PHOTO_SCHEMA);
 	db.run(COMMENT_SCHEMA);
 	db.run(LIKE_SCHEMA);
