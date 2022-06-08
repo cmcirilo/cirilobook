@@ -1,0 +1,17 @@
+<div class="bg-white border" *ngIf="product$ | async as product">
+  <div class="row">
+    <div class="col-lg-8">
+      <app-product
+        [url]="url"
+        [description]="product.description"
+      ></app-product>
+    </div>
+    <div class="col-lg-4">
+      <small>
+        <p class="text-left break-word">
+          {{ product.description }}
+        </p>
+      </small>
+    </div>
+  </div>
+</div>
