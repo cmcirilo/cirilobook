@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TokenService } from './../authentication/token/token.service';
-import { Products } from './product';
+import { Product, Products } from './product';
 
 const API = environment.apiUrl;
 
@@ -23,5 +23,12 @@ export class ProductsService {
     return this.httpClient.get<Products>(`${API}/${userName}/photos`, {
       headers,
     });
+  }
+
+  getById(id: number): Observable<Product> {
+    const token = this.tokenService.getToken();
+    const headers = new HttpHeaders().append('x-access-token', token);
+
+    return this.httpClient.get<Product>(`${API}/photos/${id}`, { headers });
   }
 }
