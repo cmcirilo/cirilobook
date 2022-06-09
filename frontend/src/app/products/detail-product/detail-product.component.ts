@@ -20,6 +20,6 @@ export class DetailProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.productId = this.activatedRoute.snapshot.params.productId;
-    this.product$ = this.productsService.getById(this.productId);
+    this.product$ = this.productsService.get(this.productId);
   }
 }
