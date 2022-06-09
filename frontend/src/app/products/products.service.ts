@@ -32,7 +32,7 @@ export class ProductsService {
 
   like(id: number): Observable<boolean> {
     return this.httpClient
-      .post(`${API}/photos/${id}/likes`, {}, { observe: 'response' })
+      .post(`${API}/photos/${id}/like`, {}, { observe: 'response' })
       .pipe(
         mapTo(true),
         catchError((error) => {
