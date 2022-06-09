@@ -6,6 +6,7 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { ProductComponent } from './product/product.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { DetailProductComponent } from './detail-product/detail-product.component';
+import { CommentsComponent } from './detail-product/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { DetailProductComponent } from './detail-product/detail-product.componen
     ProductComponent,
     GridPhotoProductsComponent,
     DetailProductComponent,
+    CommentsComponent,
   ],
   imports: [CommonModule, ProductsRoutingModule, CardModule],
 })
