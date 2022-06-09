@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -17,18 +17,10 @@ export class ProductsService {
   ) {}
 
   userList(userName: string): Observable<Products> {
-    const token = this.tokenService.getToken();
-    const headers = new HttpHeaders().append('x-access-token', token);
-
-    return this.httpClient.get<Products>(`${API}/${userName}/photos`, {
-      headers,
-    });
+    return this.httpClient.get<Products>(`${API}/${userName}/photos`);
   }
 
   getById(id: number): Observable<Product> {
-    const token = this.tokenService.getToken();
-    const headers = new HttpHeaders().append('x-access-token', token);
-
-    return this.httpClient.get<Product>(`${API}/photos/${id}`, { headers });
+    return this.httpClient.get<Product>(`${API}/photos/${id}`);
   }
 }
