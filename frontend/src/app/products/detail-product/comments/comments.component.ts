@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { Comments } from './comment';
@@ -23,7 +23,7 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
     this.comments$ = this.commentsService.get(this.id);
     this.commentForm = this.formBuilder.group({
-      comment: [', Validators.maxLength(300'],
+      comment: ['', Validators.maxLength(300)],
     });
   }
 

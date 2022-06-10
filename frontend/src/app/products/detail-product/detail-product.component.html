@@ -17,6 +17,14 @@
         <i class="fa fa-comment-o fa-2x mr-2 ml-2">{{ product.comments }}</i>
         <i (click)="delete()" class="fa fa-trash-o fa-2x pull-right"></i>
       </small>
+      <app-comments
+        [id]="productId"
+        *ngIf="product.allowComments; else warning"
+      ></app-comments>
+
+      <ng-template #warning>
+        <p>User is not allowed to comments in product</p>
+      </ng-template>
     </div>
   </div>
 </div>
