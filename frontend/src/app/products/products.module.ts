@@ -8,6 +8,7 @@ import { GridPhotoProductsComponent } from './grid-photo-products/grid-photo-pro
 import { ListProductsComponent } from './list-products/list-products.component';
 import { ProductComponent } from './product/product.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { NewProductComponent } from './new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ProductsRoutingModule } from './products-routing.module';
     GridPhotoProductsComponent,
     DetailProductComponent,
     CommentsComponent,
+    NewProductComponent,
   ],
   imports: [CommonModule, ProductsRoutingModule, CardModule, SharedModule],
 })
